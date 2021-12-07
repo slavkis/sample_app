@@ -42,12 +42,12 @@ line-height: 1.7em;
 #logo {
 float: left;
 margin-right: 10px;
-font-size: 1.7em;
-color: #fff;
-text-transform: uppercase;
-letter-spacing: -1px;
-padding-top: 9px;
-font-weight: bold;
+font-size: 1.2em;
+color: #999;
+text-transform: downcase;
+letter-spacing: 0px;
+padding-top: 13px;
+font-weight: light;
 }
 #logo:hover {
 color: #fff;
@@ -56,12 +56,12 @@ text-decoration: none;
 
 footer {
 margin-top: 45px;
-padding-top: 5px;
+padding-top: 10px;
 border-top: 1px solid #eaeaea;
 color: #777;
 }
 footer a {
-color: #555;
+color: #777;
 }
 footer a:hover {
 color: #222;
@@ -76,4 +76,143 @@ list-style: none;
 footer ul li {
 float: left;
 margin-left: 15px;
+}
+
+@mixin box_sizing {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+.debug_dump {
+clear: both;
+float: left;
+width: 100%;
+margin-top: 45px;
+@include box_sizing;
+}
+
+aside {
+section.user_info {
+margin-top: 20px;
+}
+section {
+padding: 10px 0;
+margin-top: 20px;
+&:first-child {
+border: 0;
+padding-top: 0;
+}
+span {
+display: block;
+margin-bottom: 3px;
+line-height: 1;
+}
+h1 {
+font-size: 1.4em;
+text-align: left;
+letter-spacing: -1px;
+margin-bottom: 3px;
+margin-top: 0px;
+}
+}
+}
+.gravatar {
+float: left;
+margin-right: 10px;
+}
+.gravatar_edit {
+margin-top: 15px;
+}
+
+input, textarea, select, .uneditable-input {
+border: 50px solid #bbb;
+width: 100%;
+margin-bottom: 16.6px;
+
+@include box_sizing;
+}
+input {
+height: auto !important;
+}
+
+.lol {
+  margin-top: 60px;
+
+}
+
+html,
+body {
+  background: #efefef;
+  padding: 50px;
+font-family: cursive;
+}
+/*=== 2. Anchor Link ===*/
+a {
+  color: #aaaaaa;
+  transition: all ease-in-out 200ms;
+}
+a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+
+/*=== 4. Main Form ===*/
+.login-form-1 {
+  max-width: 300px;
+  border-radius: 10px;
+  display: inline-block;
+}
+.main-login-form {
+  position: relative;
+}
+.login-form-1 .form-control {
+  border: 0;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  background: transparent;
+  color: #555555;
+  padding: 7px 0;
+  font-weight: bold;
+  height:auto;
+}
+.login-form-1 .form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+.login-form-1 .form-control:-moz-placeholder,
+.login-form-1 .form-control::-moz-placeholder,
+.login-form-1 .form-control:-ms-input-placeholder {
+  color: #999999;
+}
+.login-form-1 .form-group {
+  margin-bottom: 0;
+  border-bottom: 2px solid #efefef;
+  padding-right: 20px;
+  position: relative;
+}
+.login-form-1 .form-group:last-child {
+  border-bottom: 0;
+}
+.login-group {
+  background: #ffffff;
+  color: #999999;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+.login-group-checkbox {
+  padding: 5px 0;
+}
+
+#error_explanation {
+color: red;
+ul {
+color: red;
+margin: 0 0 30px 0;
+}
+}
+.field_with_errors {
+@extend .has-error;
+.form-control {
+color: $state-danger-text;
+}
 }

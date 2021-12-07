@@ -1,0 +1,18 @@
+<h2>Hey, <%= @user.name %>, bro!</h2>
+<!-- <ul>
+<li><strong>Your "id" is: </strong><%= @user.id %></li>
+<li><strong>Name: </strong><%= @user.name %></li> 
+<li><strong>Email: </strong><%= @user.email %></li>
+</ul> -->
+
+<% provide(:title, @user.name) %>
+<div class="row">
+<aside class="col-md-4">
+<section class="user_info">
+<h1>
+<%= gravatar_for @user %>
+<%= @user.name %>
+</h1>
+</section>
+</aside>
+</div>

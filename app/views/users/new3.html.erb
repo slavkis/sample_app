@@ -1,0 +1,19 @@
+<% provide(:title, 'Sign up') %>
+<h1>Sign up, bro!</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@user) do |f| %>
+        <%= f.label :name, "Bro-name:" %>
+        <%= f.text_field :name %>
+        <%= f.label :email, "Bro-mail:" %>
+        <%= f.email_field :email %>
+        <%= f.label :password, "Password:"%>
+        <%= f.password_field :password %>
+        <%= f.label :password_confirmation, "Confirmation:" %>
+        <%= f.password_field :password_confirmation %>
+        <%= f.submit "Tap here to become a bro!", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="8zU-W1fd_TUSwYhkFeVXjo4NUuwx4Xy9NW_YTLPvyVV8jH9nmdp-GOjxX5eXVOj3PUv79hAruu-r3MjPHTgzHQ">

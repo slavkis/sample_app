@@ -11,3 +11,11 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("@rails/ujs").start()
+require("@rails/activestorage").start()
+require("channels")
+
+import 'src/stylesheets/application'
+const images = require.context('../images', true)
+
