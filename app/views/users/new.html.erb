@@ -1,3 +1,4 @@
+<% provide(:title, "Sign up") %>
 <div class="text-center" style="padding:50px 15">
     <h4>Sign up, bro!</h4>
     <div class="logo"></div></br>
@@ -34,7 +35,7 @@
              <input type="submit" name="commit" value="Become a bro!" class="btn btn-info" data-disable-with="Become a bro!">
             </div>
             <div class="etc-login-form"></br>
-                <p>Already bro?? <a href="#">Login here</a></p>
+                <p>Already bro?? <%= link_to "Login here", login_path %></p>
             </div>
         </form>
     </div>
