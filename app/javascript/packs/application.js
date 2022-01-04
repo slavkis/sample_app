@@ -19,4 +19,3 @@ require("channels")
 import 'src/stylesheets/application'
 const images = require.context('../images', true)
 
-//= require bootstrap

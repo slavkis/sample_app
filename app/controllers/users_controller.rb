@@ -9,14 +9,13 @@ class UsersController < ApplicationController
   end  
 
   def create
-    @user = User.create(params.require(:user).permit(:name, :email, :password, 
-    :password_confirmation, :checkbox))
+    @user = User.new(user_params)
     if @user.save
       log_in @user
       flash[:success] = "Welcome to slavkis bro app, #{@user.name}, bro!"
       redirect_to @user
     else 
-      render "new"
+      render 'new'
     end 
   end
 
@@ -32,7 +31,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-      :password_confirmation)
+      :password_confirmation, :checkbox)
     end 
 
 end
