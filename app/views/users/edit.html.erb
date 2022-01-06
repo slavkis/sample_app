@@ -1,0 +1,35 @@
+<% provide(:title, "Edit user") %>
+<div class="text-center" style="padding:50px 15">
+    <h4>Edit ur profile here!</h4>
+    <div class="logo"></div>
+	</br>
+    <div class="login-form-1">
+        <%= render 'shared/error_messages' %>
+        <%= form_for(@user, method: :patch) do |f| %>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                        <%= f.label :name, class: "sr-only" %>
+                        <%= f.text_field :name, class: 'form-control', placeholder: "bro-name:" %>
+                    </div>
+                    <div class="form-group">
+                        <%= f.label :email, class: "sr-only"  %>
+			            <%= f.email_field :email, class: 'form-control', placeholder: "bro-mail:" %>
+                    </div>
+                    <div class="form-group">
+						<%= f.label :password, class: "sr-only"%>
+						<%= f.password_field :password, class: 'form-control', placeholder: "password:" %>
+                    </div>
+                    
+                    <div class="form-group">
+                        <%= f.label :password_confirmation, "Confirmation", class: "sr-only" %>
+						<%= f.password_field :password_confirmation, class: 'form-control', placeholder: "pass confirm:" %>
+                    </div>
+                </div>
+            	</br>
+            	</br>
+            	<%= f.submit "Save changes", class: "btn btn-info" %>
+            </div>
+        <% end %>
+    </div>
+</div>
