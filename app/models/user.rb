@@ -1,8 +1,12 @@
 class User < ApplicationRecord
 
+require 'carrierwave/orm/activerecord'
+
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
+
+  mount_uploader :avatar, AvatarUploader
 
   validates :name, presence: true, length: { maximum: 50 }
 

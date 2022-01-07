@@ -5,7 +5,7 @@
 	</br>
     <div class="login-form-1">
         <%= render 'shared/error_messages' %>
-        <%= form_for(@user, method: :patch) do |f| %>
+        <%= form_for(@user, method: :patch, html: {multipart: true}) do |f| %>
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
@@ -28,8 +28,10 @@
                 </div>
             	</br>
             	</br>
+                <%= f.file_field :avatar, class: "form-control" %>
             	<%= f.submit "Save changes", class: "btn btn-info" %>
             </div>
+
         <% end %>
     </div>
 </div>

@@ -11,6 +11,7 @@
 <section class="user_info">
 <h1>
 <%= @user.name %>
+<%= image_tag @user.avatar.url(:thumb), class: "img-show" if @user.avatar? %>
 </h1>
 </section>
 </aside>
