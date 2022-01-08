@@ -11,7 +11,10 @@ email: "slavkis@slavkis.world",
 password: "password",
 password_confirmation: "password",
 admin: true,
-checkbox: true)
+checkbox: true,
+activated: true,
+activated_at: Time.zone.now)
+
 99.times do |n|
 name = Faker::Name.name
 email = "mail#{n+1}@slavkis.world"
@@ -20,6 +23,8 @@ User.create!(name: name,
 email: email,
 password: password,
 password_confirmation: password,
-checkbox: true)
+checkbox: true,
+activated: true,
+activated_at: Time.zone.now)
 
 end

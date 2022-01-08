@@ -1,6 +1,7 @@
 <% provide(:title, "Edit user") %>
 <div class="text-center" style="padding:50px 15">
     <h4>Edit ur profile here!</h4>
+    <h1><%= image_tag @user.avatar.url(:thumb), class: "img-show" if @user.avatar? %></h1>
     <div class="logo"></div>
 	</br>
     <div class="login-form-1">

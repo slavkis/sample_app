@@ -1,0 +1,7 @@
+<h1>Slavkis bro App</h1>
+<p>Yo, <%= @user.name %>, bro!</p>
+<p>
+Welcome to the Slavkis Application for Broooothers!! Click on the link below to activate your account:
+</p>
+<%= link_to "Click to become a bro", edit_account_activation_url(@user.activation_token,
+email: @user.email) %>
