@@ -12,7 +12,7 @@ password: "password",
 password_confirmation: "password",
 admin: true,
 checkbox: true,
-activated: true,
+activated: false,
 activated_at: Time.zone.now)
 
 99.times do |n|

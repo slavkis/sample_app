@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         redirect_back_or user
       else
-        flash[:warning] = "Sorry, bro( Account not activated. Check ur email, bro, please, bro.."
-        reditect_to root_url
+        flash[:warning] = "Sorry, bro ( Account not activated. Check ur email, bro, please, bro.."
+        redirect_to root_url
       end
     else  
       flash.now[:danger] = "Ooups... Be careful, bro! Something went wrong"
