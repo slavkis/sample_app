@@ -1,7 +1,24 @@
-<div class="center jumbotron">    
-  <h2>
-    <img src="/assets/sca.png" alt="Slavkis cool app" width="200" height="170" style="float:initial">
-    <div class="center jumbotron">This is the home page of slavkis bro application!</div>
-  </h2>
-   <%= link_to "Sign up, bro!", signup_path, class: "btn btn-lg btn-info" %>
-</div>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h4>Micropost Feed</h4>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">    
+    <h2>
+      <img src="/assets/sca.png" alt="Slavkis cool app" width="200" height="170" style="float:initial">
+      <div class="center jumbotron">This is the home page of slavkis bro application!</div>
+    </h2>
+     <%= link_to "Sign up, bro!", signup_path, class: "btn btn-lg btn-info" %>
+  </div>
+<% end %>

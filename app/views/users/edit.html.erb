@@ -1,12 +1,12 @@
 <% provide(:title, "Edit user") %>
 <div class="text-center" style="padding:50px 15">
     <h4>Edit ur profile here!</h4>
-    <h1><%= image_tag @user.avatar.url(:thumb), class: "img-show" if @user.avatar? %></h1>
+    <h1><%= image_tag @user.avatar.url(:thumb), class: "profile-photo-lg" if @user.avatar? %></h1>
     <div class="logo"></div>
 	</br>
-    <div class="login-form-1">
-        <%= render 'shared/error_messages' %>
+    <div class="login-form-1">        
         <%= form_for(@user, method: :patch, html: {multipart: true}) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
             <div class="main-login-form">
                 <div class="login-group">
                     <div class="form-group">
