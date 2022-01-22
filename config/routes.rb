@@ -2,14 +2,20 @@ Rails.application.routes.draw do
 
   get 'password_reset/new'
   get 'password_reset/edit'
-  resources :users
+
+  resources :users do 
+    member do 
+      get :following, :followers
+    end
+  end
+
   resources :account_activations, only: [:edit]
   resources :password_reset,      only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
   
   root 'static_pages#home'
 
-  get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
   get 'signup' => 'users#new' 
