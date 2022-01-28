@@ -6,11 +6,15 @@
               <div class="nearby-user">
                 <div class="row">
                   <div class="col-md-2 col-sm-2">
-                    <%= image_tag user.avatar.url(:thumb), class: "profile-photo-lg", alt: "user" if user.avatar? %>
+                    <% if user.avatar? %>
+                    <%= image_tag user.avatar.url(:thumb), class: "profile-photo-lg", alt: "user" %>
+                    <% else %>
+                      <img src="/assets/default_avatar.jpg" class="profile-photo-lg">
+                    <% end %>
                   </div>
                   <div class="col-md-7 col-sm-7">
                     <h4><%= link_to user.name, user %></h4>
-                    <p>Software Engineer</p>
+                    <b><%= "Mood: #{user.user_info}" if user.user_info %></b>
                     <% if current_user.admin? && !current_user?(user) %>
                     <h6>
                       <%= link_to "delete profile", user, method: :delete, class: "text-muted", data: { confirm: "You sure?" } %>
@@ -18,7 +22,7 @@
                     </h6>
                   </div>
                   <div class="col-md-3 col-sm-3">
-                  <button class="btn btn-primary pull-right">Add to bros</button>
+                     <%= render 'follow_form', user: user %>
                   </div>
                 </div>
               </div>

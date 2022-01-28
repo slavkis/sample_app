@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'password_reset/new'
-  get 'password_reset/edit'
-
   resources :users do 
     member do 
       get :following, :followers

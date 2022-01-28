@@ -1,7 +1,9 @@
 <li id="micropost-<%= micropost.id %>">
-  <% if logged_in? %>
-  <%= image_tag @current_user.avatar.url(:thumb), class: "profile-photo-lg" if @current_user.avatar? %>
-  <% end %>
+<% if micropost.user.avatar? %>
+  <%= image_tag micropost.user.avatar.url(:thumb), class: "profile-photo-lg"  %>
+<% else %>
+  <img src="/assets/default_avatar.jpg" class="profile-photo-lg">
+<% end %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <div><span class="content"><%= micropost.content %></span></div>
   <span class="picture"><%= image_tag micropost.picture.url(:normal), class: "img.profile-photo-lg" if micropost.picture? %><span>
