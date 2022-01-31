@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: [:edit]
   resources :password_reset,      only: [:new, :create, :edit, :update]
-  resources :microposts,          only: [:create, :destroy]
+  resources :microposts,          only: [:create, :destroy] do
+    resources :likes
+  end
   resources :relationships,       only: [:create, :destroy]
   
   root 'static_pages#home'
