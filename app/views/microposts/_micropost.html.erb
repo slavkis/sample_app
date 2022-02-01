@@ -4,19 +4,34 @@
 <% else %>
   <img src="/assets/default_avatar.jpg" class="profile-photo-lg">
 <% end %>
-  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
-  <div><span class="content"><%= micropost.content %></span></div>
-  <span class="picture"><%= image_tag micropost.picture.url(:normal), class: "img.profile-photo-lg" if micropost.picture? %><span>
-  <span class="timestamp">
-      <% pre_like = micropost.likes.find { |like| like.user_id == current_user.id} %>
+  <span class="user">
+    <%= link_to micropost.user.name, micropost.user %>
+  </span>
+  <div>
+    <span class="content">
+      <%= micropost.content %>
+    </span>
+  </div>
+  <span class="picture">
+    <%= image_tag micropost.picture.url(:normal), class: "img.profile-photo-lg" if micropost.picture? %>
+  </span>
+  
+    <% pre_like = micropost.likes.find { |like| like.user_id == current_user.id} %>
     <% if pre_like %>
-      <%= button_to 'Unlike', micropost_like_path(micropost, pre_like), method: :delete %>
-      <p><%= micropost.likes.count %> <%= (micropost.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+    <div>
+      <%= button_to 'Unlike', micropost_like_path(micropost, pre_like), method: :delete, class: "btn btn-primary btn-xs"  %>
+    </div>
+      <%= micropost.likes.count %> <%= (micropost.likes.count) == 1 ? 'Like' : 'Likes'%>
     <% else %>
-      <div><span><%= button_to 'Like', micropost_likes_path(micropost), method: :post %>
-      <%= micropost.likes.count %> <%= (micropost.likes.count) == 1 ? 'Like' : 'Likes'%></span></div>
+      <%= button_to 'Like', micropost_likes_path(micropost), method: :post, class: "btn btn-info btn-xs" %>
+      <%= micropost.likes.count %> <%= (micropost.likes.count) == 1 ? 'Like' : 'Likes'%>
+    <% end %>
+
+    <% if micropost.likes.any? %>
+         <%= render 'shared/like_avatar', micropost: micropost, user: @user %>
     <% end %>
   </br>  
+  <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
     <%= link_to "delete", micropost, method: :delete, data: { confirm: "Are you sure?"} %>
   </span>
