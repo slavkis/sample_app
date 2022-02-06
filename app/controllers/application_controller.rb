@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end  
     end 
+
+    def find_micropost
+      @micropost = Micropost.find(params[:micropost_id]) 
+    end
+
 end

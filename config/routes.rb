@@ -9,12 +9,14 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_reset,      only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy] do
-    resources :likes
+    resources :likes,             only: [:create, :destroy]
+    resources :comments,          only: [:create, :destroy]
   end
+
   resources :relationships,       only: [:create, :destroy]
   
   root 'static_pages#home'
-
+  
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
   get 'signup' => 'users#new' 

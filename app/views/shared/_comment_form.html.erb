@@ -1,0 +1,6 @@
+<%= form_for(Comment.new, url: micropost_comments_path(micropost_id: micropost.id)) do |f| %>
+  <div class="field">
+  	<%= f.text_field :content, placeholder: "Comment, bro !", class: "form-control" %>
+  </div>
+  <%= f.submit "Comment", class: "btn btn-info btn-xs" %>
+<% end %>

@@ -33,6 +33,20 @@
   </br>  
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-    <%= link_to "delete", micropost, method: :delete, data: { confirm: "Are you sure?"} %>
+    <% if micropost.user_id == current_user.id %>
+      <%= link_to "delete", micropost, method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
   </span>
+    <% micropost.comments.each do |comment| %>
+      <p><b><%= comment.user.name %>: </b><%= comment.content %></p>
+      <span class="timestamp">
+        Commented <%= time_ago_in_words(comment.created_at) %> ago.
+      </span>
+    <% end %>
+  <section class="comment_form">
+    <%= render 'shared/comment_form', micropost: micropost %>
+  </section>
+  <% if @comment.micropost.user_id == current_user.id %>
+    <%= link_to "delete", @comment.micropost, method: :delete %>
+  <% end %>
 </li>

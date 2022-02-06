@@ -4,13 +4,13 @@
             <div class="widget">
                 <div class="widget-content">
                     <ul class="widget-user-list">
-                    			<% micropost.likes.each do |like| %>
-                      			<% if like.user.avatar? %>
-                      				<li><a><%= image_tag like.user.avatar.url %></a></li>
-                      			<% else %>	
-                      				<li><a><img src="/assets/default_avatar.jpg"></a></li>
+                    	<% micropost.likes.each do |like| %>
+                      		<% if like.user.avatar? %>
+                      			<li><a><%= image_tag like.user.avatar.url %></a></li>
+                      		<% else %>	
+                      			<li><a><img src="/assets/default_avatar.jpg"></a></li>
                           	<% end %>
-                          <% end %>
+                        <% end %>
                         <li class="number"><a> + <%= micropost.likes.count %></a></li>
                     </ul>
                 </div>
