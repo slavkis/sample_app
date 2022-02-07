@@ -37,16 +37,20 @@
       <%= link_to "delete", micropost, method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
   </span>
-    <% micropost.comments.each do |comment| %>
-      <p><b><%= comment.user.name %>: </b><%= comment.content %></p>
-      <span class="timestamp">
-        Commented <%= time_ago_in_words(comment.created_at) %> ago.
-      </span>
-    <% end %>
   <section class="comment_form">
     <%= render 'shared/comment_form', micropost: micropost %>
   </section>
-  <% if @comment.micropost.user_id == current_user.id %>
-    <%= link_to "delete", @comment.micropost, method: :delete %>
+  <% if micropost.comments.any? %>
+    <p>Comments:</p>
+  <% end %>
+  <% micropost.comments.each do |comment| %>
+  <%= render 'shared/comment_avatar', micropost: micropost, user: @user%>
+    <p><b><%= comment.user.name %>: </b><%= comment.content %></p>
+    <span class="timestamp">
+      Commented <%= time_ago_in_words(comment.created_at) %> ago.
+    </span>
+    <% if comment.user_id == current_user.id %>
+      <%= link_to "delete", micropost_comment_path(micropost_id: micropost.id, id: comment.id), method: :delete %>
+    <% end %> 
   <% end %>
 </li>

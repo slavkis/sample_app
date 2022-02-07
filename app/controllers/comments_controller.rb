@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = @micropost.comments.find(params[:id])
     @comment.destroy
-    redirect_to micropost_path(@micropost)
+    redirect_back fallback_location: root_path
   end
 
   private 

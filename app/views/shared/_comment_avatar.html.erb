@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="widget">
+                <div class="widget-content">
+                    <ul class="widget-user-list">
+                    	<% micropost.comments.each do |comment| %>
+                      		<% if comment.user.avatar? %>
+                      			<li><a><%= image_tag comment.user.avatar.url %></a></li>
+                      		<% else %>	
+                      			<li><a><img src="/assets/default_avatar.jpg"></a></li>
+                          	<% end %>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
