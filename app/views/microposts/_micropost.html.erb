@@ -1,56 +1,74 @@
-<li id="micropost-<%= micropost.id %>">
-<% if micropost.user.avatar? %>
-  <%= image_tag micropost.user.avatar.url(:thumb), class: "profile-photo-lg"  %>
-<% else %>
-  <img src="/assets/default_avatar.jpg" class="profile-photo-lg">
-<% end %>
-  <span class="user">
-    <%= link_to micropost.user.name, micropost.user %>
-  </span>
-  <div>
-    <span class="content">
-      <%= micropost.content %>
-    </span>
+<li id="micropost-<%= micropost.id %>">  
+  <div class="container bootstrap snippets bootdey">
+      <div class="col-sm-8">
+          <div class="panel panel-white post panel-shadow">
+              <div class="post-heading">
+                  <div class="pull-left image">
+                    <% if micropost.user.avatar? %>
+                      <%= image_tag micropost.user.avatar.url(:thumb), class: "img-circle avatar"  %>
+                    <% else %>
+                      <img src="/assets/default_avatar.jpg" class="img-circle avatar">
+                    <% end %>
+                  </div>
+                  <div class="pull-left meta">
+                      <div class="title h5">
+                          <b><%= link_to micropost.user.name, micropost.user %></b>
+                          posted:
+                      </div>
+                      <h6 class="text-muted time"><%= time_ago_in_words(micropost.created_at) %> ago</h6>
+                  </div>
+              </div> 
+              <div class="post-description"> 
+                  <p><%= micropost.content %></p>
+                  <p>
+                    <span class="picture">
+                      <%= image_tag micropost.picture.url(:normal), class: "img.profile-photo-lg" if micropost.picture? %>
+                    </span>
+                  </p>
+                  <div class="stats">
+                    <% pre_like = micropost.likes.find { |like| like.user_id == current_user.id} %>
+                    <% if pre_like %>
+                  
+                    <%= link_to 'Unlike', micropost_like_path(micropost, pre_like), method: :delete, class: "btn btn-info" %>
+                    <% else %>
+                        <%= link_to 'Like', micropost_likes_path(micropost), method: :post, class: "btn btn-info" %>
+                    <% end %>
+                    <% if micropost.user_id == current_user.id %>
+                      <%= link_to "Delete post", micropost, method: :delete, data: { confirm: "Are you sure?" }, class: "pull-right" %>
+                    <% end %>
+                  </div>
+                  
+              </div>
+                <% if micropost.likes.any? %>
+                  <%= render 'shared/like_avatar', micropost: micropost, user: @user %>
+                <% end %>
+              <div class="post-footer">
+                <%= render 'shared/comment_form', micropost: micropost %>
+                <% micropost.comments.each do |comment| %>
+                <ul class="comments-list">
+                    <li class="comment">
+                      <div class="pull-left image">
+                        <% if comment.user.avatar? %>
+                          <%= image_tag comment.user.avatar.url(:thumb), class: "img-circle avatar"  %>
+                        <% else %>
+                          <img src="/assets/default_avatar.jpg" class="img-circle avatar">
+                        <% end %>
+                      </div>
+                        <div class="comment-body">
+                            <div class="comment-heading">
+                                <h4 class="user"><%= link_to comment.user.name, comment.user %></h4>
+                                <h5 class="time"><%= time_ago_in_words(comment.created_at) %> ago</h5>
+                            </div>
+                            <p><%= comment.content %></p>
+                        </div>
+                                <% if comment.user_id == current_user.id %>
+                    <%= link_to "delete", micropost_comment_path(micropost_id: micropost.id, id: comment.id), method: :delete, class: "pull-right" %>
+                  <% end %> 
+                    </li>
+                </ul>
+                <% end %>
+              </div>
+          </div>
+      </div>
   </div>
-  <span class="picture">
-    <%= image_tag micropost.picture.url(:normal), class: "img.profile-photo-lg" if micropost.picture? %>
-  </span>
-  
-    <% pre_like = micropost.likes.find { |like| like.user_id == current_user.id} %>
-    <% if pre_like %>
-    <div>
-      <%= button_to 'Unlike', micropost_like_path(micropost, pre_like), method: :delete, class: "btn btn-primary btn-xs"  %>
-    </div>
-      <%= micropost.likes.count %> <%= (micropost.likes.count) == 1 ? 'Like' : 'Likes'%>
-    <% else %>
-      <%= button_to 'Like', micropost_likes_path(micropost), method: :post, class: "btn btn-info btn-xs" %>
-      <%= micropost.likes.count %> <%= (micropost.likes.count) == 1 ? 'Like' : 'Likes'%>
-    <% end %>
-
-    <% if micropost.likes.any? %>
-         <%= render 'shared/like_avatar', micropost: micropost, user: @user %>
-    <% end %>
-  </br>  
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-    <% if micropost.user_id == current_user.id %>
-      <%= link_to "delete", micropost, method: :delete, data: { confirm: "Are you sure?" } %>
-    <% end %>
-  </span>
-  <section class="comment_form">
-    <%= render 'shared/comment_form', micropost: micropost %>
-  </section>
-  <% if micropost.comments.any? %>
-    <p>Comments:</p>
-  <% end %>
-  <% micropost.comments.each do |comment| %>
-  <%= render 'shared/comment_avatar', micropost: micropost, user: @user%>
-    <p><b><%= comment.user.name %>: </b><%= comment.content %></p>
-    <span class="timestamp">
-      Commented <%= time_ago_in_words(comment.created_at) %> ago.
-    </span>
-    <% if comment.user_id == current_user.id %>
-      <%= link_to "delete", micropost_comment_path(micropost_id: micropost.id, id: comment.id), method: :delete %>
-    <% end %> 
-  <% end %>
 </li>
