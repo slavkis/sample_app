@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'messages/:user_id' => 'messages#show', as: :chat
+  post 'messages/:user_id' => 'messages#send_message', as: :send_message  
+
   resources :account_activations, only: [:edit]
   resources :password_reset,      only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy] do
